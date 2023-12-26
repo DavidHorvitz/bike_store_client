@@ -4,11 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { get_products_by_category_id } from '../../../store/actions/categories/get_products_by_category_id';
 import { CategoryCard } from "../../Templates/Cards/CategoryCard/CategoryCard";
 
-export const HandlerAddStudentToCourse = (id) => {
-    const navigate = useNavigate();
-    navigate(`/add-student-to-course/${id}`)
-};
-
 
 export const Category_data = () => {
     const dispatch = useDispatch();
@@ -34,7 +29,7 @@ export const Category_data = () => {
     }
     return (
         <div>
-            <h1>Category details from Category_data Component </h1>
+            <h2>Category details from Category_data Component </h2>
             <CategoryCard
                 data={categories}
                 onButtonClickGetProperties={(category) => handlerProducts_by_category(category.category_id, category)}

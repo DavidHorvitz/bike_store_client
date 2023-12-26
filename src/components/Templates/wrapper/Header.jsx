@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom';
 const drawerWidth = 240;
 
 function Header(props) {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -30,7 +30,7 @@ function Header(props) {
             <List>
                 <ListItem disablePadding>
                     <ListItemButton sx={{ textAlign: 'center', color: 'black' }}>
-                        <Button onClick={() => navigate("/")}  sx={{ color: 'black' }} >Home</Button>
+                        <Button onClick={() => navigate("/")} sx={{ color: 'black' }}>Home</Button>
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
@@ -53,18 +53,22 @@ function Header(props) {
         <Box
             sx={{
                 display: 'flex',
-                height: 100,
+                flexDirection: 'column',
+                height: '100%',
             }}
         >
             <CssBaseline />
             <AppBar
                 component="nav"
                 sx={{
-                    height: 100,
                     backgroundColor: 'whitesmoke',
+                    height: '120px',
                 }}
             >
-                <Toolbar>
+
+                <Toolbar sx={{
+                    height: '100px',
+                }}>
                     <IconButton
                         color="black"
                         aria-label="open drawer"
@@ -95,7 +99,7 @@ function Header(props) {
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
                     ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
+                        keepMounted: true,
                     }}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
@@ -113,10 +117,6 @@ function Header(props) {
 }
 
 Header.propTypes = {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window: PropTypes.func,
 };
 
