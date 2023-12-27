@@ -5,8 +5,8 @@ import './App.css'
 import Header from './components/Templates/wrapper/Header';
 import { Main } from './components/Templates/wrapper/Main';
 import { getCategories } from './store/actions/categories/getCategories';
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {  } from './store/features/productsSlice';
 
 function App() {
   const dispatch = useDispatch();

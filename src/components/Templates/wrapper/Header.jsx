@@ -13,6 +13,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 const drawerWidth = 240;
 
@@ -62,7 +64,7 @@ function Header(props) {
                 component="nav"
                 sx={{
                     backgroundColor: 'whitesmoke',
-                    height: '120px',
+                    height: '100px',
                 }}
             >
 
@@ -89,6 +91,11 @@ function Header(props) {
                         <Button onClick={() => navigate("/")} sx={{ color: 'black' }}>Home </Button>
                         <Button sx={{ color: 'black' }}>Categories</Button>
                         <Button sx={{ color: 'black' }}>Contact</Button>
+                        <Button
+                            size="medium" sx={{ color: 'yellowgreen' }}
+                            onClick={() => navigate("/shopping-cart")}>
+                            <AddShoppingCartIcon fontSize='large' />
+                        </Button>
                     </Box>
                 </Toolbar>
             </AppBar>

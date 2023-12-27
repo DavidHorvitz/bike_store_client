@@ -1,13 +1,16 @@
-import { Box, Button, Card, CardContent, CardMedia, Grid, Paper, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import * as React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { add_product_to_cart } from '../../../../store/features/productsSlice';
 import { get_product_by_id } from '../../../../store/actions/products/get_products_by_id';
 
 export const ProductCardProperties = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const location = useLocation();
+    const navigate = useNavigate();
     const { productData, productId } = location.state || {};
     console.log("productData from location ", productData);
     React.useEffect(() => {
@@ -16,6 +19,11 @@ export const ProductCardProperties = () => {
             dispatch(get_product_by_id(id));
         }
     }, [dispatch, id]);
+
+    const handleAddToCart = (productData) => {
+        dispatch(add_product_to_cart(productData));
+    };
+
     return (
         <div>
             <h2>Product by "{id}" ID </h2>
@@ -55,9 +63,12 @@ export const ProductCardProperties = () => {
                                     Model year :      {productData.model_year}
                                 </Typography>
                             </CardContent>
-                            {/* <CardActions> */}
-                            <Button size="small">Share</Button>
-                            <Button size="small">Learn More</Button>
+                            <Button
+                                size="medium" sx={{ color: 'yellowgreen' }}
+                                onClick={() => handleAddToCart(productData)}>
+                                <AddShoppingCartIcon fontSize='large' />
+                                Shopping Cart
+                            </Button>
                         </Card>
                     </Box>
                 </Grid>
