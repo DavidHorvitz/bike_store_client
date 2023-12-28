@@ -15,10 +15,15 @@ import {
 
 export default function Shopping_cart() {
   const cart_items = useSelector((state) => state.products.shopping_cart_items);
+  const categories = useSelector(state => state.categories.categories);
 
   const [quantities, setQuantities] = useState(cart_items.map(() => 1));
   const [totalAmount, setTotalAmount] = useState(0);
 
+  const getCategoryName = (categoryId) => {
+    const category = categories.find((cat) => cat.category_id === categoryId);
+    return category ? category.category_name : '';
+  };
   const handleQuantityChange = (index, newValue) => {
     const newQuantities = [...quantities];
     newQuantities[index] = newValue;
@@ -61,7 +66,7 @@ export default function Shopping_cart() {
                           <MDBRow className="mb-4 d-flex justify-content-between align-items-center">
                             <MDBCol md="2" lg="2" xl="2">
                               <MDBCardImage
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img7.webp"
+                              src={item.product_img}
                                 fluid
                                 className="rounded-3"
                                 alt="Cotton T-shirt"
@@ -69,7 +74,7 @@ export default function Shopping_cart() {
                             </MDBCol>
                             <MDBCol md="3" lg="3" xl="3">
                               <MDBTypography tag="h6" className="text-muted">
-                                Shirt
+                                Shirt  {getCategoryName(item.category_id)}
                               </MDBTypography>
                               <MDBTypography tag="h6" className="text-black mb-0">
                                 {item.product_name}

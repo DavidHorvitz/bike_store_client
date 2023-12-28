@@ -37,12 +37,12 @@ function Header(props) {
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton sx={{ textAlign: 'center', color: 'black' }}>
-                        <Button sx={{ color: 'black' }}>Categories</Button>
+                        <Button sx={{ color: 'black' }}>Sign In</Button>
                     </ListItemButton>
                 </ListItem>
                 <ListItem disablePadding>
                     <ListItemButton sx={{ textAlign: 'center', color: 'black' }}>
-                        <Button sx={{ color: 'black' }}>Contact</Button>
+                        <Button sx={{ color: 'black' }}>Sign Up</Button>
                     </ListItemButton>
                 </ListItem>
             </List>
@@ -89,8 +89,8 @@ function Header(props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         <Button onClick={() => navigate("/")} sx={{ color: 'black' }}>Home </Button>
-                        <Button sx={{ color: 'black' }}>Categories</Button>
-                        <Button sx={{ color: 'black' }}>Contact</Button>
+                        <Button onClick={() => navigate("/sign-in")} sx={{ color: 'black' }}>Sign In</Button>
+                        <Button onClick={() => navigate("/sign-up")} sx={{ color: 'black' }}>Sign Up</Button>
                         <Button
                             size="medium" sx={{ color: 'yellowgreen' }}
                             onClick={() => navigate("/shopping-cart")}>

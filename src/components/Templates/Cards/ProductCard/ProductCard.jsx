@@ -7,11 +7,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 import { Box } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom'; // Assuming you are using React Router
 import { get_products_by_category_id } from '../../../../store/actions/categories/get_products_by_category_id';
 import { get_product_by_id } from '../../../../store/actions/products/get_products_by_id';
-import { add_product_to_cart } from '../../../../store/features/productsSlice';
+import { add_product_to_cart, remove_product_from_cart } from '../../../../store/features/productsSlice';
+
 
 
 export const ProductCard = () => {
@@ -29,6 +32,9 @@ export const ProductCard = () => {
 
     const handleAddToCart = (product) => {
         dispatch(add_product_to_cart(product));
+    };
+    const handleRemoveFromCart = (product) => {
+        dispatch(remove_product_from_cart(product));
     };
 
     const handlerProducts_by_id = (product_id, product_data) => {
@@ -71,16 +77,33 @@ export const ProductCard = () => {
                                     flexGrow: 1,
                                     minWidth: 200,
                                     maxWidth: 460,
-                                    borderRadius: 10 // Adjust the value as needed
+                                    borderRadius: 10, // Adjust the value as needed
+                                    alignContent: 'center',
                                 }}>
                                 <CardMedia
                                     onClick={() => handlerProducts_by_id(product.product_id, product)}
                                     sx={{ height: 225 }}
-                                    image="https://dalicanvas.co.il/wp-content/uploads/2022/10/%D7%AA%D7%95%D7%9B%D7%99-%D7%98%D7%95%D7%A7%D7%9F-%D7%A1%D7%A1%D7%92%D7%95%D7%A0%D7%992.jpg"
+                                    image={product.product_img}
                                     title="green iguana"
                                 />
                                 <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
+                                    {/* <Typography gutterBottom variant="h5" component="div"> */}
+                                    <Typography
+                                        gutterBottom
+                                        variant="h4"
+                                        component="div"
+                                        sx={{
+                                            fontSize: 'inherit', // Set the default font size
+                                            fontWeight: 'normal', // Set the default font weight
+                                            transition: 'font-weight 0.3s ease-in-out', // Add a smooth transition effect
+
+                                            // Define styles for the hover state
+                                            ':hover': {
+                                                fontWeight: 'bold', // Change font weight on hover
+                                                cursor: 'pointer', // Change cursor to pointer on hover
+                                            },
+                                        }}
+                                    >
                                         {product.product_name}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
@@ -91,7 +114,19 @@ export const ProductCard = () => {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small"  onClick={() => handleAddToCart(product)}>Add To Cart</Button>
+                                    {/* <Button size="small" onClick={() => handleAddToCart(product)}>Add To Cart</Button> */}
+                                    <Button
+                                        size="medium" sx={{ color: 'yellowgreen' }}
+                                        onClick={() => handleAddToCart(product)}>
+                                        <AddShoppingCartIcon fontSize='large' />
+                                        Add To Cart
+                                    </Button>
+                                    <Button
+                                        size="medium" sx={{ color: 'red' }}
+                                        onClick={() => handleRemoveFromCart(product)}>
+
+                                        <RemoveShoppingCartIcon fontSize='large' />
+                                        Remove From Cart</Button>
                                 </CardActions>
                             </Card>
                         );

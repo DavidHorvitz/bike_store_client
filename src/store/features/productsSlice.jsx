@@ -12,6 +12,12 @@ const productsSlice = createSlice({
   reducers: {
     add_product_to_cart: (state, action) => {
       state.shopping_cart_items.push(action.payload);
+    },
+    remove_product_from_cart: (state, action) => {
+      // Filter out the product from shopping_cart_items
+      state.shopping_cart_items = state.shopping_cart_items.filter(
+        (product) => product.product_id !== action.payload.product_id
+      );
     }
   },
   extraReducers: (builder) => {
@@ -37,5 +43,5 @@ const productsSlice = createSlice({
       );
   },
 });
-export const { add_product_to_cart } = productsSlice.actions
+export const { add_product_to_cart,remove_product_from_cart } = productsSlice.actions
 export default productsSlice.reducer;

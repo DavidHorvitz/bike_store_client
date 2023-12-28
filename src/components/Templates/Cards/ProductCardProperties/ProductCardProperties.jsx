@@ -95,8 +95,8 @@ export const ProductCardProperties = () => {
                                 minWidth: 200,
                                 maxWidth: 600,
                             }}
-                            image="https://dalicanvas.co.il/wp-content/uploads/2022/10/%D7%AA%D7%95%D7%9B%D7%99-%D7%98%D7%95%D7%A7%D7%9F-%D7%A1%D7%A1%D7%92%D7%95%D7%A0%D7%992.jpg"
-                            title="green iguana"
+                            image={productData.product_img}
+                            title={productData.product_name}
                         />
                     </Box>
                 </Grid>
